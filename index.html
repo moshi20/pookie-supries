@@ -5,19 +5,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Pookie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #e0f2fe;
+      margin: 0;
+      padding: 0;
+      background: #e0f2fe;
       font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
+      color: #1e3a8a;
+      overflow-x: hidden;
     }
-    .start-btn {
-      background-color: #2563eb;
+    .container {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      background: #2563eb;
       color: white;
       border: none;
       padding: 1rem 2rem;
@@ -26,14 +34,104 @@
       cursor: pointer;
       transition: 0.3s ease;
     }
-    .start-btn:hover {
+    button:hover {
       background-color: #1d4ed8;
+    }
+    .corner-text {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      display: none;
+    }
+    .top-right { top: 1rem; right: 1rem; }
+    .bottom-left { bottom: 1rem; left: 1rem; }
+    .bottom-right { bottom: 1rem; right: 1rem; }
+    .bottom-center { bottom: 1rem; left: 50%; transform: translateX(-50%); }
+    .gallery, .letter-box {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .gallery img {
+      max-width: 90%;
+      border-radius: 12px;
+      margin: 0.5rem 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .letter-box {
+      background: #ffffffcc;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .open-letter {
+      margin-top: 2rem;
+      text-decoration: underline;
+      cursor: pointer;
+      color: #1d4ed8;
     }
   </style>
 </head>
 <body>
-  <h1>For You, Pookie</h1>
-  <p>Click below to begin your surprise!</p>
-  <button class="start-btn" onclick="alert('This is just a placeholder! The real surprise goes here.')">Click me, pookie!</button>
+  <div class="container">
+    <h1>For You, Pookie</h1>
+    <button onclick="startSurprise()">Click me, pookie!</button>
+  </div>
+
+  <div class="corner-text top-right">Good girl. Now check bottom left.</div>
+  <div class="corner-text bottom-left">Hmm... someone's serious. Bottom right, go!</div>
+  <div class="corner-text bottom-right">You earned it. Final button is at the bottom center.</div>
+  <div class="corner-text bottom-center"><button onclick="showGallery()">Click me for the surprise</button></div>
+
+  <div class="gallery">
+    <h2>This album is for you...</h2>
+    <p>Doctor’s orders: view every morning, night, and once in between — for maximum pookie happiness.</p>
+    <img src="https://via.placeholder.com/300x400?text=Abs+Pic+1" alt="Abs 1">
+    <img src="https://via.placeholder.com/300x400?text=Abs+Pic+2" alt="Abs 2">
+    <img src="https://via.placeholder.com/300x400?text=Abs+Pic+3" alt="Abs 3">
+    <div class="open-letter" onclick="showLetter()">Open the letter...</div>
+  </div>
+
+  <div class="letter-box">
+    <p><strong>Dear Pookie,</strong></p>
+    <p>If you’re reading this, that means you followed all the silly clues I left.<br><em>Good girl.</em></p>
+    <p>And no, this wasn’t for a special day or anything big…</p>
+    <p>I just wanted to make you smile. That’s it. Because you deserve to.</p>
+    <p>I’m proud of you, bacha. I see you, I notice the little things you don’t always talk about. And just so you know — I’m always with you.</p>
+  </div>
+
+  <script>
+    function startSurprise() {
+      setTimeout(() => {
+        document.querySelector('.corner-text.top-right').style.display = 'block';
+      }, 1500);
+      setTimeout(() => {
+        document.querySelector('.corner-text.bottom-left').style.display = 'block';
+      }, 3500);
+      setTimeout(() => {
+        document.querySelector('.corner-text.bottom-right').style.display = 'block';
+      }, 5500);
+      setTimeout(() => {
+        document.querySelector('.corner-text.bottom-center').style.display = 'block';
+      }, 7500);
+    }
+
+    function showGallery() {
+      document.querySelector('.gallery').style.display = 'block';
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function showLetter() {
+      document.querySelector('.letter-box').style.display = 'block';
+      document.querySelector('.letter-box').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
